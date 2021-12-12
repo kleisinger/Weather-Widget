@@ -1,0 +1,21 @@
+{
+  "name": "weather-widget",
+  "version": "1.0.0",
+  "description": "a weather widget that uses the navigator geolocation API to determine the users location and uses that location to obtain the current weather and a 5 day forecast for their region.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kleisinger/weather-widget.git"
+  },
+  "keywords": [],
+  "author": "Mathew Kleisinger",
+  "bugs": {
+    "url": "https://github.com/kleisinger/weather-widget/issues"
+  },
+  "homepage": "https://github.com/kleisinger/weather-widget#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
