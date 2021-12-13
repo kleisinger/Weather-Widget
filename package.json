@@ -16,6 +16,8 @@
   },
   "homepage": "https://github.com/kleisinger/weather-widget#readme",
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-terser": "^2.1.0"
   }
 }
