@@ -9,6 +9,21 @@ if (!navigator.geolocation) {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
     console.log(lat, lon)
-  })
+
+    const getCurrentWeather = (lat, lon) => {
+      fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
+      )
+      .then((response) => response.json())
+      .then((data) => {
+       console.log(data)
+      })
+      .catch((err) => alert('Something went wrong, please double-check your URL')) 
+    };
+
+
+    getCurrentWeather(lat, lon);
+  });
 };
+
+
 
