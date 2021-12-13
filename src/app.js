@@ -3,6 +3,7 @@ let lat;
 let lon;
 const currentEl = document.querySelector('.current-conditions')
 const forecastEl = document.querySelector('.forecast')
+let allHighs = [];
 
 
 if (!navigator.geolocation) {
@@ -42,6 +43,7 @@ if (!navigator.geolocation) {
       .then((response) => response.json())
       .then((data) => {
         listItem = data.list;
+        getHighs(listItem)
         listItem.forEach(fullDay => {
           if (fullDay.dt_txt.includes('09:00:00')) {
             renderForecastWeather(fullDay)
@@ -64,8 +66,39 @@ if (!navigator.geolocation) {
           </div>
         </div>
         `
-      )
+      );
     };
+
+    const getHighs = (listItem) => {
+      let fullDay1 = [];
+      let fullDay2 = [];
+      let fullDay3 = [];
+      let fullDay4 = [];
+      let fullDay5 = [];
+
+      for (i = 0; i < 8; i++) {
+        fullDay1.push(listItem[i].main.temp_max)
+      };
+      for (i = 8; i < 16; i++) {
+        fullDay2.push(listItem[i].main.temp_max)
+      };
+      for (i = 16; i < 24; i++) {
+        fullDay3.push(listItem[i].main.temp_max)
+      };
+      for (i = 24; i < 32; i++) {
+        fullDay4.push(listItem[i].main.temp_max)
+      };
+      for (i = 32; i < 40; i++) {
+        fullDay5.push(listItem[i].main.temp_max)
+      };
+
+      allHighs.push(Math.max(...fullDay1))
+      allHighs.push(Math.max(...fullDay2))
+      allHighs.push(Math.max(...fullDay3))
+      allHighs.push(Math.max(...fullDay4))
+      allHighs.push(Math.max(...fullDay5))
+      console.log(allHighs)
+     };
 
     
 
