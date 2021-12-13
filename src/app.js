@@ -2,6 +2,7 @@ const apiKey = `d0c30f3e5d9786155757451de2759d9c`
 let lat;
 let lon;
 const currentEl = document.querySelector('.current-conditions')
+const forecastEl = document.querySelector('.forecast')
 
 
 if (!navigator.geolocation) {
@@ -10,7 +11,6 @@ if (!navigator.geolocation) {
   navigator.geolocation.getCurrentPosition((position) => {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
-    console.log(lat, lon)
 
     const getCurrentWeather = (lat, lon) => {
       fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
@@ -41,21 +41,37 @@ if (!navigator.geolocation) {
       )
       .then((response) => response.json())
       .then((data) => {
-        listItem = data.list
+        listItem = data.list;
         listItem.forEach(fullDay => {
           if (fullDay.dt_txt.includes('09:00:00')) {
-           console.log(fullDay)
+            renderForecastWeather(fullDay)
           };   
         });
       })
-      .catch((err) => alert('Something went wrong, please double-check your URL'))   
+      .catch((err) => alert('Something went wrong, please double-check your URL'));
+    };
+
+    const renderForecastWeather = (fullDay) => {      
+      forecastEl.insertAdjacentHTML(
+        `beforeend`,
+        `
+        <div class="day">
+          <h3>Date Goes Here</h3>
+          <img src="http://openweathermap.org/img/wn/${fullDay.weather[0].icon}@2x.png" />
+          <div class="description">${fullDay.weather[0].description}</div>
+          <div class="temp">
+            <span class="high">123℃</span>/<span class="low">123℃</span>
+          </div>
+        </div>
+        `
+      )
     };
 
     
 
 
     getCurrentWeather(lat, lon);
-    getForecastWeather(lat, lon)
+    getForecastWeather(lat, lon);
   });
 };
 
