@@ -3,6 +3,7 @@ let lat;
 let lon;
 const currentEl = document.querySelector('.current-conditions')
 
+
 if (!navigator.geolocation) {
   console.log(`Geolocation is not supported by your browser`);
 } else {
@@ -18,7 +19,7 @@ if (!navigator.geolocation) {
       .then((data) => {
         renderCurrentWeather(data);
       })
-      .catch((err) => alert('Something went wrong, please double-check your URL')) 
+      .catch((err) => alert('Something went wrong, please double-check your URL'));
     };
 
     const renderCurrentWeather = (data) => {
@@ -31,11 +32,30 @@ if (!navigator.geolocation) {
           <div class="temp">${((data.main.temp).toFixed(0))}℃</div>
           <div class="condition">${data.weather[0].description}</div>
         </div>
-       `);
-     };
+       `
+      );
+    };
+
+    const getForecastWeather = (lat, lon) => {
+      fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
+      )
+      .then((response) => response.json())
+      .then((data) => {
+        listItem = data.list
+        listItem.forEach(fullDay => {
+          if (fullDay.dt_txt.includes('09:00:00')) {
+           console.log(fullDay)
+          };   
+        });
+      })
+      .catch((err) => alert('Something went wrong, please double-check your URL'))   
+    };
+
+    
 
 
     getCurrentWeather(lat, lon);
+    getForecastWeather(lat, lon)
   });
 };
 
