@@ -5,6 +5,7 @@ const currentEl = document.querySelector('.current-conditions')
 const forecastEl = document.querySelector('.forecast')
 let allHighs = [];
 let allLows = [];
+let x = 0;
 
 
 if (!navigator.geolocation) {
@@ -49,6 +50,7 @@ if (!navigator.geolocation) {
         listItem.forEach(fullDay => {
           if (fullDay.dt_txt.includes('09:00:00')) {
             renderForecastWeather(fullDay)
+            x++;
           };   
         });
       })
@@ -67,7 +69,7 @@ if (!navigator.geolocation) {
           <img src="http://openweathermap.org/img/wn/${fullDay.weather[0].icon}@2x.png" />
           <div class="description">${fullDay.weather[0].description}</div>
           <div class="temp">
-            <span class="high">123℃</span>/<span class="low">123℃</span>
+            <span class="high">${allHighs[x].toFixed(0)}℃</span>/<span class="low">${allLows[x].toFixed(0)}℃</span>
           </div>
         </div>
         `
@@ -102,7 +104,6 @@ if (!navigator.geolocation) {
       allHighs.push(Math.max(...fullDay3))
       allHighs.push(Math.max(...fullDay4))
       allHighs.push(Math.max(...fullDay5))
-      console.log(allHighs)
     };
 
     const getLows = (listItem) => {
@@ -133,7 +134,6 @@ if (!navigator.geolocation) {
       allLows.push(Math.min(...dailyLows3))
       allLows.push(Math.min(...dailyLows4))
       allLows.push(Math.min(...dailyLows5))
-      console.log(allLows)
     };
 
 
