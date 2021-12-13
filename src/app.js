@@ -55,12 +55,15 @@ if (!navigator.geolocation) {
       .catch((err) => alert('Something went wrong, please double-check your URL'));
     };
 
-    const renderForecastWeather = (fullDay) => {      
+    const renderForecastWeather = (fullDay) => {  
+      const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      let date = new Date(fullDay.dt_txt);
+      let day = weekday[date.getDay()]    
       forecastEl.insertAdjacentHTML(
         `beforeend`,
         `
         <div class="day">
-          <h3>Date Goes Here</h3>
+          <h3>${day}</h3>
           <img src="http://openweathermap.org/img/wn/${fullDay.weather[0].icon}@2x.png" />
           <div class="description">${fullDay.weather[0].description}</div>
           <div class="temp">
