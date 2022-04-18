@@ -1,6 +1,6 @@
 # Weather-Widget
 * A browser based weather widget that uses the [navigator geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API/Using_the_Geolocation_API) to determine the users location to determine a 5 day weather forecast for their region.
-* Completed solo for my Intro to Third-Party API's course at MITT
+* Completed solo for my Intro to Third-Party API's (Frontend) course at MITT
 
 ## Assignment Details
 ### Set-up & Instructions
