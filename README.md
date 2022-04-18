@@ -8,7 +8,7 @@ Build and deploy a weather widget that uses the navigator geolocation API to det
 
 ### To get started:
 * Sign-up for a free API account at [OpenWeatherMap](https://openweathermap.org/api)
-* Download starter HTML and CSS files
+* Download starter HTML and CSS files 
 
 ### Process
 * In addition to your grade in SD105, this project will also include a grade for your SD130 - Tools & Automation course according to the following requirements:
